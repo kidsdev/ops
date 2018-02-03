@@ -10,6 +10,9 @@ class Docker(models.Model):
     class Meta:
         ordering = ['sort']
 
+    def __str__(self):
+        return self.name
+
 
 class Compose(models.Model):
     dockers = models.ManyToManyField(Docker)
@@ -21,3 +24,6 @@ class Compose(models.Model):
 
     class Meta:
         ordering = ['sort']
+
+    def __str__(self):
+        return self.name

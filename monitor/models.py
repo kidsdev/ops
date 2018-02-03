@@ -17,3 +17,11 @@ class Monitor(models.Model):
 
     class Meta:
         ordering = ['sort']
+
+    def __str__(self):
+        return self.name
+
+
+class Chart(models.Model):
+    monitor = models.ForeignKey(Monitor, on_delete=models.CASCADE)
+    chart = models.ForeignKey('chart.Chart', on_delete=models.CASCADE)

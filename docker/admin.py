@@ -1,3 +1,13 @@
 from django.contrib import admin
 
-# Register your models here.
+from .models import Docker, Compose
+
+
+@admin.register(Docker)
+class DockerAdmin(admin.ModelAdmin):
+    list_display = ('name', 'code', 'sort')
+
+
+@admin.register(Compose)
+class ComposeAdmin(admin.ModelAdmin):
+    list_display = ('name', 'code', 'sort')

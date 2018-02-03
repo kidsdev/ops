@@ -21,6 +21,7 @@ class Chart(models.Model):
 
     server = models.ForeignKey('server.Server', null=True, on_delete=models.SET_NULL)
     docker = models.ForeignKey('docker.Docker', null=True, on_delete=models.SET_NULL)
+    node = models.ForeignKey('node.Node', null=True, on_delete=models.SET_NULL)
 
     name = models.CharField(max_length=255)
     code = models.CharField(max_length=120, db_index=True)

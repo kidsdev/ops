@@ -5,7 +5,7 @@ from .models import Chart, Day, Hour, Raw
 
 @admin.register(Chart)
 class ChartAdmin(admin.ModelAdmin):
-    list_display = ('name', 'code', 'type', 'unit', 'sort')
+    list_display = ('server', 'docker', 'node', 'name', 'code', 'type', 'unit', 'sort')
 
 
 @admin.register(Day)

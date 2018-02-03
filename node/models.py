@@ -13,3 +13,6 @@ class Node(models.Model):
 
     class Meta:
         ordering = ['sort']
+
+    def __str__(self):
+        return self.name
