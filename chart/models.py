@@ -9,7 +9,7 @@ class Chart(models.Model):
         (4, 'ABSOLUTE')
     )
 
-    UNIT_CHOIECS = (
+    UNIT_CHOICES = (
         (1, '%'),
         (10, 'KB'),
         (11, 'MB'),
@@ -19,17 +19,23 @@ class Chart(models.Model):
         (31, 'Day')
     )
 
+    server = models.ForeignKey('server.Server', null=True, on_delete=models.SET_NULL)
+    docker = models.ForeignKey('docker.Docker', null=True, on_delete=models.SET_NULL)
+
     name = models.CharField(max_length=255)
     code = models.CharField(max_length=120, db_index=True)
     type = models.SmallIntegerField(choices=TYPE_CHOICES)
-    unit = models.SmallIntegerField(choices=UNIT_CHOIECS)
+    unit = models.SmallIntegerField(choices=UNIT_CHOICES)
     sort = models.IntegerField(default=0, db_index=True)
 
     class Meta:
         ordering = ['sort']
 
+    def __str__(self):
+        return self.name
 
-class DateDay(models.Model):
+
+class Day(models.Model):
     chart = models.ForeignKey(Chart, on_delete=models.CASCADE)
     max = models.FloatField()
     value = models.FloatField()
@@ -40,7 +46,8 @@ class DateDay(models.Model):
     class Meta:
         ordering = ['date']
 
-class DataHour(models.Model):
+
+class Hour(models.Model):
     chart = models.ForeignKey(Chart, on_delete=models.CASCADE)
     max = models.FloatField()
     value = models.FloatField()
@@ -51,3 +58,12 @@ class DataHour(models.Model):
 
     class Meta:
         ordering = ['date', 'hour']
+
+
+class Raw(models.Model):
+    chart = models.ForeignKey(Chart, on_delete=models.CASCADE)
+    value = models.FloatField()
+    timestamp = models.DateTimeField(db_index=True)
+
+    class Meta:
+        ordering = ['-timestamp']

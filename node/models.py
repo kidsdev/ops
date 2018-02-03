@@ -1,17 +1,13 @@
 from django.db import models
 
 
-class Monitor(models.Model):
-    TYPE_CHOICES = (
-        (1, 'Stacked Area'),
-    )
-
-    node = models.ForeignKey('node.Node', null=True, on_delete=models.SET_NULL)
+class Node(models.Model):
+    server = models.ForeignKey('server.Server', null=True, on_delete=models.SET_NULL)
     docker_compose = models.ForeignKey('docker.Compose', null=True, on_delete=models.SET_NULL)
 
     name = models.CharField(max_length=255)
     code = models.CharField(max_length=120, db_index=True)
-    type = models.SmallIntegerField(choices=TYPE_CHOICES)
+    path = models.CharField(max_length=255)
 
     sort = models.IntegerField(default=0, db_index=True)
 
