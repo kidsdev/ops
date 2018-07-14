@@ -3,6 +3,8 @@ syntax: glob
 *~
 .DS_Store
 .idea
+.env
 db.sqlite3
 ops/local_settings.py
 media
+deploy_static
