@@ -24,6 +24,8 @@ $ cd ops
 $ docker-compose up -d
 $ docker-compose exec -T ops bash -c "python manage.py collectstatic --noinput"
 $ docker-compose exec -T ops bash -c "python manage.py migrate"
+$ docker-compose exec ops bash
+$ ./manage.py createsuperuser
 ```
 
 Update

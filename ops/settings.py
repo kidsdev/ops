@@ -25,7 +25,7 @@ SECRET_KEY = '8wx8=^4zzr0+5w&d^w)i^dtbmqq4b(y-ybh9lmud^z)-b!zt5-'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -140,6 +140,6 @@ STATICFILES_DIRS = (
 LOGIN_URL = '/login'
 
 try:
-    from local_settings import *
+    from .local_settings import *
 except:
     pass
