@@ -8,3 +8,7 @@ db.sqlite3
 ops/local_settings.py
 media
 deploy_static
+
+_docker/uwsgi/uwsgi.touch
+_docker/uwsgi/uwsgi.pid
+_docker/uwsgi/stats.sock
