@@ -12,6 +12,7 @@ urlpatterns = [
     path('logout', logout_view, name='logout'),
 
     path('server/', include('server.urls')),
+    path('node/', include('node.urls')),
 
     path('admin/', admin.site.urls),
 ]
