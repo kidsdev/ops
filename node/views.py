@@ -1,6 +1,6 @@
-from django.contrib.auth.decorators import permission_required
 from django.shortcuts import render
 
+from utils.decorators import permission_required
 from utils.paginator import listing
 from .models import Node
 
