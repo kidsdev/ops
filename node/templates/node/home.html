@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <table class="table table-hover table-sm">
+    <thead>
+    <tr class="text-center">
+      <th scope="col">#</th>
+      <th scope="col">Server</th>
+      <th scope="col">Name</th>
+      <th scope="col">URL</th>
+      <th scope="col">Port / Tag</th>
+      <th scope="col">Status</th>
+      <th scope="col">Update / <small>Create</small></th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for node in node_list %}
+    <tr class="text-center">
+      <th scope="row">{{ node.id }}</th>
+      <td>
+        {% if node.server.image %}
+        <img src="{{ node.server.image.url }}" width="45" class="rounded">
+        {% endif %}
+        <span class="badge badge-pill badge-success">{{ node.server.name }}</span>
+      </td>
+      <td>{{ node.name }} <br/> <span class="badge badge-pill badge-info">{{ node.code }}</span></td>
+      <td><a href="{{ node.url }}" target="_blank">{{ node.url }}</a></td>
+      <td>{{ node.port }} / <span class="badge badge-pill badge-primary">{{ node.tag }}</span></td>
+      <td>{{ node.get_status_display }}</td>
+      <td>{{ node.datetime_update }} <br/> <small>{{ node.datetime_create }}</small></td>
+    </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+  {% include "pagination.html" with content_list=node_list %}
+{% endblock %}

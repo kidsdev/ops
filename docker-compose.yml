@@ -1,0 +1,10 @@
+version: '3.3'
+services:
+  ops:
+    image: kidsdev/ops:${TAG}
+    restart: always
+    volumes:
+      - ./:/code/
+      - ./_docker/uwsgi/:/uwsgi/
+    ports:
+      - 127.0.0.1:${PORT}:80
