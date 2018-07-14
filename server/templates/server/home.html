@@ -9,6 +9,7 @@
       <th scope="col">Name</th>
       <th scope="col">User</th>
       <th scope="col">IP</th>
+      <th scope="col">Node</th>
       <th scope="col">Create</th>
     </tr>
     </thead>
@@ -24,6 +25,7 @@
       <td>{{ server.name }} <span class="badge badge-pill badge-info">{{ server.code }}</span></td>
       <td>{{ server.user }}</td>
       <td>{{ server.ip }}</td>
+      <td>{{ server.node_set.count }}</td>
       <td>{{ server.datetime_create }}</td>
     </tr>
     {% endfor %}

@@ -24,12 +24,16 @@
           <li class="nav-item {% if NAV == 'home' %}active{% endif %}">
             <a class="nav-link" href="{% url 'home' %}">Home</a>
           </li>
+          {% if perms.server.add_server or perms.server.change_server or perms.server.delete_server %}
           <li class="nav-item {% if NAV == 'server' %}active{% endif %}">
             <a class="nav-link" href="{% url 'server:home' %}">Server</a>
           </li>
+          {% endif %}
+          {% if perms.node.add_node or perms.node.change_node or perms.node.delete_node %}
           <li class="nav-item {% if NAV == 'node' %}active{% endif %}">
             <a class="nav-link" href="{% url 'node:home' %}">Node</a>
           </li>
+          {% endif %}
         </ul>
       </div>
 
