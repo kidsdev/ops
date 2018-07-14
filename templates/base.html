@@ -24,6 +24,9 @@
           <li class="nav-item {% if NAV == 'home' %}active{% endif %}">
             <a class="nav-link" href="{% url 'home' %}">Home</a>
           </li>
+          <li class="nav-item {% if NAV == 'server' %}active{% endif %}">
+            <a class="nav-link" href="{% url 'server:home' %}">Server</a>
+          </li>
         </ul>
       </div>
 

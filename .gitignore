@@ -5,3 +5,4 @@ syntax: glob
 .idea
 db.sqlite3
 ops/local_settings.py
+media

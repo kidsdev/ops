@@ -1,3 +1,15 @@
 from django.shortcuts import render
 
-# Create your views here.
+from .models import Server
+
+
+def home_view(request):
+    server_list = Server.objects.all()
+    return render(
+        request,
+        'server/home.html',
+        {
+            'NAV': 'server',
+            'server_list': server_list,
+        }
+    )

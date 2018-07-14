@@ -1,6 +1,6 @@
 from django.conf import settings
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 
 from .views import home_view
 from .views_login import login_view
@@ -10,6 +10,8 @@ urlpatterns = [
     path('', home_view, name='home'),
     path('login', login_view, name='login'),
     path('logout', logout_view, name='logout'),
+
+    path('server/', include('server.urls')),
 
     path('admin/', admin.site.urls),
 ]
