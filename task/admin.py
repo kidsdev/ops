@@ -15,7 +15,7 @@ class HistoryAdmin(admin.ModelAdmin):
 
 @admin.register(Parameter)
 class ParameterAdmin(admin.ModelAdmin):
-    list_display = ('task', 'content_type', 'content_id', 'field', 'sort')
+    list_display = ('task', 'content_type', 'field', 'sort')
 
 
 @admin.register(Log)

@@ -144,6 +144,22 @@ LOGIN_URL = '/login'
 
 CELERY_RESULT_BACKEND = 'django-db'
 
+_CACHED_CONTENT_TYPE = {}
+
+
+def _content_type(code):
+    if code in _CACHED_CONTENT_TYPE:
+        return _CACHED_CONTENT_TYPE[code]
+
+    from django.contrib.contenttypes.models import ContentType
+    p = code.split('.')
+    content_type = ContentType.objects.get(app_label=p[0], model=p[1])
+    _CACHED_CONTENT_TYPE[code] = content_type
+    return content_type
+
+
+CONTENT_TYPE = _content_type
+
 try:
     from .local_settings import *
 except:

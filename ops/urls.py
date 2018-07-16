@@ -14,6 +14,7 @@ urlpatterns = [
 
     path('server/', include('server.urls')),
     path('node/', include('node.urls')),
+    path('task/', include('task.urls')),
 
     path('admin/', admin.site.urls),
 ]

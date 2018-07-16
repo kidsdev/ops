@@ -37,7 +37,6 @@ class Parameter(models.Model):
     task = models.ForeignKey(Task, on_delete=models.CASCADE)
 
     content_type = models.ForeignKey('contenttypes.ContentType', on_delete=models.CASCADE)
-    content_id = models.IntegerField()
     field = models.CharField(max_length=255)
 
     sort = models.SmallIntegerField(default=0, db_index=True)

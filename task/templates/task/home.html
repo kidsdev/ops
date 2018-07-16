@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <table class="table table-hover table-sm">
+    <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Name</th>
+      <th scope="col">Code</th>
+      <th scope="col">Update</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for task in task_list %}
+    <tr>
+      <th scope="row">{{ task.id }}</th>
+      <td>{{ task.name }}</td>
+      <td><span class="badge badge-pill badge-info">{{ task.code }}</span></td>
+      <td>{{ task.datetime_update }}</td>
+    </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}
