@@ -45,6 +45,9 @@ INSTALLED_APPS = [
     'chart',
 
     'node',
+
+    'task',
+    'django_celery_results',
 ]
 
 MIDDLEWARE = [
@@ -138,6 +141,8 @@ STATICFILES_DIRS = (
 )
 
 LOGIN_URL = '/login'
+
+CELERY_RESULT_BACKEND = 'django-db'
 
 try:
     from .local_settings import *
