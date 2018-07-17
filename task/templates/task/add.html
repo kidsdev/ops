@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <form action="" method="post">{% csrf_token %}
+    <div class="form-group">
+      <label for="template">Template</label>
+      <select class="form-control" id="template" name="task">
+        <option value="0">Empty</option>
+        {% for task in task_list %}
+        <option value="{{ task.id }}">{{ task.name }}</option>
+        {% endfor %}
+      </select>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+{% endblock %}
