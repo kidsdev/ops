@@ -7,3 +7,11 @@ def listing(request, contact_list):
 
     page = request.GET.get('page')
     return paginator.get_page(page)
+
+
+def get_q(q_dict):
+    q = ''
+    for key, value in q_dict.items():
+        if value:
+            q += '&%s=%s' % (key, value)
+    return q if len(q) > 0 else None

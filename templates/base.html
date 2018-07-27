@@ -34,6 +34,11 @@
             <a class="nav-link" href="{% url 'node:home' %}">Node</a>
           </li>
           {% endif %}
+          {% if perms.task.add_task or perms.task.change_task or perms.task.delete_task %}
+          <li class="nav-item {% if NAV == 'task' %}active{% endif %}">
+            <a class="nav-link" href="{% url 'task:home' %}">Task</a>
+          </li>
+          {% endif %}
         </ul>
       </div>
 

@@ -1,6 +1,27 @@
 {% extends "base.html" %}
 
 {% block content %}
+  <div class="row">
+    <div class="col align-self-end">
+      <form method="get">
+        <div class="form-row align-items-center float-right">
+          <div class="col-auto my-1">
+            <select class="custom-select mr-sm-2" name="q_server">
+              <option value="0">All Server</option>
+              {% for server in server_list %}
+                <option value="{{ server.id }}" {% if q_server == server.id %}selected{% endif %}>
+                  {{ server.name }}
+                </option>
+              {% endfor %}
+            </select>
+          </div>
+          <div class="col-auto my-1">
+            <button type="submit" class="btn btn-primary btn-sm">Filter</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
   <table class="table table-hover table-sm">
     <thead>
     <tr class="text-center">
@@ -11,26 +32,32 @@
       <th scope="col">Port / Tag</th>
       <th scope="col">Status</th>
       <th scope="col">Update / <small>Create</small></th>
+      <th scope="col"></th>
     </tr>
     </thead>
     <tbody>
     {% for node in node_list %}
-    <tr class="text-center">
-      <th scope="row">{{ node.id }}</th>
-      <td>
-        {% if node.server.image %}
-        <img src="{{ node.server.image.url }}" width="45" class="rounded">
-        {% endif %}
-        <span class="badge badge-pill badge-success">{{ node.server.name }}</span>
-      </td>
-      <td>{{ node.name }} <br/> <span class="badge badge-pill badge-info">{{ node.code }}</span></td>
-      <td><a href="{{ node.url }}" target="_blank">{{ node.url }}</a></td>
-      <td>{{ node.port }} / <span class="badge badge-pill badge-primary">{{ node.tag }}</span></td>
-      <td>{{ node.get_status_display }}</td>
-      <td>{{ node.datetime_update }} <br/> <small>{{ node.datetime_create }}</small></td>
-    </tr>
+      <tr class="text-center">
+        <th scope="row">{{ node.id }}</th>
+        <td class="text-left">
+          {% if node.server.image %}
+            <img src="{{ node.server.image.url }}" width="45" class="rounded">
+          {% endif %}
+          <span class="badge badge-pill badge-success">{{ node.server.name }}</span>
+        </td>
+        <td>{{ node.name }} <br/> <span class="badge badge-pill badge-info">{{ node.code }}</span></td>
+        <td class="text-left"><a href="{{ node.url }}" target="_blank">{{ node.url }}</a></td>
+        <td>{{ node.port }} / <span class="badge badge-pill badge-primary">{{ node.tag }}</span></td>
+        <td>{{ node.get_status_display }}</td>
+        <td>{{ node.datetime_update }} <br/>
+          <small>{{ node.datetime_create }}</small>
+        </td>
+        <td>
+          <a href="{% url 'node:detail' node.id %}" class="btn btn-sm btn-secondary">Detail</a>
+        </td>
+      </tr>
     {% endfor %}
     </tbody>
   </table>
-  {% include "pagination.html" with content_list=node_list %}
+  {% include "pagination.html" with content_list=node_list q=q_paginator %}
 {% endblock %}

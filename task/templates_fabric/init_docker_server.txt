@@ -1,0 +1,20 @@
+server.server,ip
+server.server,user
+***
+con = Connection(ip, user='root')
+con.run('apt install update && apt install -y nginx')
+con.run('useradd -p $(openssl passwd -1 password) %s' % user)
+con.run('mkdir -p /home/%s/.ssh/' % user)
+con.run('cp ~/.ssh/authorized_keys /home/%s/.ssh/' % user)
+con.run('chown %s:%s /home/conicle/.ssh/ -R' % (user, user))
+con.run('chmod 644 /home/%s/.ssh/authorized_keys' % user)
+con.run('apt install -y htop')
+
+con.run('curl -fsSL get.docker.com -o get-docker.sh')
+con.run('sh get-docker.sh')
+
+con.run('groupadd docker')
+con.run('usermod -aG docker %s' % user)
+con.run('reboot')
+
+​con.close()

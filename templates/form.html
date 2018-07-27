@@ -1,0 +1,21 @@
+<form action="" method="post"> {% csrf_token %}
+  {% for field in form %}
+    {% if field.field.widget.attrs.type == "CheckboxInput" %}
+      <div class="checkbox">
+        <label>
+          {{ field }} {{ field.label }}
+        </label>
+      </div>
+    {% else %}
+      <fieldset class="form-group {% if field.errors %}has-danger{% endif %}">
+        <label class="form-control-label" for="{{ field.id_for_label }}">{{ field.label }}</label>
+        {{ field }}
+        {% for error in field.errors %}
+          <small class="text-help">{{ error }}</small>
+        {% endfor %}
+        <small class="text-muted">{{ field.help_text }}</small>
+      </fieldset>
+    {% endif %}
+  {% endfor %}
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
