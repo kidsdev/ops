@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'chart',
 
     'node',
+    'version',
 
     'task',
     'django_celery_results',
