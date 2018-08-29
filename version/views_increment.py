@@ -45,6 +45,10 @@ def increment_view(request):
                 revision=d['revision'][:255],
                 value='%s.1' % (date.strftime("%Y.%m"))
             )
-        return HttpResponse("let version = '%s'\nmodule.exports = version\n" % version.value)
+        if config.key.find('develop') == -1:
+            _version = version.value
+        else:
+            _version = 'Develop~%s' % version.value
+        return HttpResponse("let version = '%s'\nmodule.exports = version\n" % _version)
     else:
         return HttpResponse(status=404)
