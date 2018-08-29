@@ -49,6 +49,10 @@ def increment_view(request):
             _version = version.value
         else:
             _version = 'Develop~%s' % version.value
-        return HttpResponse("let version = '%s'\nmodule.exports = version\n" % _version)
+        format = request.GET.get('format', None)
+        if format == 'plain':
+            return HttpResponse("%s\n" % _version)
+        else:
+            return HttpResponse("let version = '%s'\nmodule.exports = version\n" % _version)
     else:
         return HttpResponse(status=404)
