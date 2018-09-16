@@ -17,3 +17,6 @@ class Server(models.Model):
 
     def __str__(self):
         return self.name
+
+    def get_node_count_live(self):
+        return self.node_set.filter(status=2).count()
