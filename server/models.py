@@ -8,6 +8,7 @@ class Server(models.Model):
 
     user = models.CharField(max_length=24)
     ip = models.CharField(max_length=24)
+    memory = models.FloatField(default=0.0)
     sort = models.IntegerField(default=0, db_index=True)
 
     datetime_create = models.DateTimeField(auto_now_add=True)

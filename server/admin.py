@@ -5,4 +5,4 @@ from .models import Server
 
 @admin.register(Server)
 class ServerAdmin(admin.ModelAdmin):
-    list_display = ('name', 'code', 'user', 'ip', 'sort', 'datetime_create')
+    list_display = ('name', 'code', 'user', 'ip', 'memory', 'sort', 'datetime_create')
