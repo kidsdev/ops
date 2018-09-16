@@ -25,7 +25,7 @@
       <td>{{ server.name }} <span class="badge badge-pill badge-info">{{ server.code }}</span></td>
       <td>{{ server.user }}</td>
       <td>{{ server.ip }}</td>
-      <td>{{ server.node_set.count }}</td>
+      <td>{{ server.get_node_count_live }}</td>
       <td>{{ server.datetime_create }}</td>
     </tr>
     {% endfor %}
