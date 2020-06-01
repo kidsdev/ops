@@ -4,9 +4,11 @@ syntax: glob
 .DS_Store
 .idea
 .env
+.venv
+
 db.sqlite3
 ops/local_settings.py
-venv
+
 media
 deploy_static
 
