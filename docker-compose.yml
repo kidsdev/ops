@@ -1,10 +1,11 @@
-version: '3.3'
+version: '3.8'
 services:
   ops:
     image: kidsdev/ops:${TAG}
     restart: always
     volumes:
-      - ./:/code/
-      - ./_docker/uwsgi/:/uwsgi/
+      - ./local_settings.py:/code/ultimate/local_settings.py
+      - ./static_deploy:/code/static_deploy
+      - ./media:/code/media
     ports:
       - 127.0.0.1:${PORT}:80

@@ -1,21 +1,18 @@
-FROM python:3.7-stretch
+FROM python:3.9-alpine
 
-RUN apt-get update && apt-get install -y \
-  ntp
-
-RUN echo "Asia/Bangkok" > /etc/timezone
-RUN dpkg-reconfigure -f noninteractive tzdata
-
-RUN mkdir /code
-RUN mkdir /uwsgi
-
-RUN pip install uwsgi
-ADD requirements.txt /code
+ADD ./uwsgi.ini /uwsgi/uwsgi.ini
+ADD ./requirements.txt /code/requirements.txt
 
 WORKDIR /code/
-RUN pip install --upgrade pip
-RUN pip install -r requirements.txt
+
+RUN pip install -U pip
+RUN apk add --no-cache \
+  ca-certificates gcc musl-dev libffi-dev jpeg-dev zlib-dev postgresql-dev mariadb-dev libressl-dev \
+  && pip install uwsgi \
+  && pip install -r requirements.txt
+
+ADD . /code
 
 EXPOSE 80
 
-CMD /etc/init.d/ntp start && uwsgi --emperor /uwsgi
+CMD uwsgi --emperor /uwsgi
